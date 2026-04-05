@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome – On The Level Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:      #0a0a0a;
+  --dark:       #111214;
+  --card:       #18191d;
+  --border:     #2a2c31;
+  --gold:       #f5c518;
+  --gold-dim:   #c49a0e;
+  --gold-bg:    rgba(245,197,24,0.08);
+  --gold-bd:    rgba(245,197,24,0.22);
+  --white:      #f0efe8;
+  --muted:      #78797f;
+  --danger-bg:  rgba(224,82,82,0.10);
+  --danger-bd:  rgba(224,82,82,0.28);
+  --danger-tx:  #f0a0a0;
+  --warn-bg:    rgba(240,124,46,0.10);
+  --warn-bd:    rgba(240,124,46,0.28);
+  --warn-tx:    #f5b880;
+  --info-bg:    rgba(245,197,24,0.07);
+  --info-bd:    rgba(245,197,24,0.22);
+  --info-tx:    #e0cc78;
+  --success-bg: rgba(76,175,125,0.10);
+  --success-bd: rgba(76,175,125,0.28);
+  --success-tx: #72dda0;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: 80px 24px 110px;
+  overflow: hidden;
+  background: var(--dark);
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 0%, rgba(245,197,24,0.13) 0%, transparent 68%),
+    repeating-linear-gradient(0deg,  transparent, transparent 39px, rgba(255,255,255,0.018) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.018) 40px);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--gold-bd); background: var(--gold-bg);
+  padding: 7px 18px; border-radius: 2px; margin-bottom: 36px;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.65s ease both;
+}
+.hero-badge svg { width:11px; height:11px; stroke:var(--gold); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(68px, 14vw, 164px);
+  line-height: 0.88; letter-spacing: 0.025em;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.65s 0.1s ease both;
+}
+.hero h1 span { display:block; color:var(--gold); }
+.hero-sub {
+  margin-top: 32px; font-size: 16px; color: var(--muted);
+  max-width: 480px; line-height: 1.65;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.65s 0.2s ease both;
+}
+.hero-sub strong { color:var(--white); font-weight:600; }
+.hero-meta {
+  margin-top: 34px; font-family: 'DM Mono', monospace;
+  font-size: 10.5px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.65s 0.3s ease both;
+}
+.scroll-hint {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: var(--muted); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  animation: fadeUp 0.65s 0.5s ease both;
+}
+.scroll-hint::after {
+  content: ''; width: 1px; height: 44px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  animation: pulseLine 2.2s ease-in-out infinite;
+}
+
+/* ── WRAPPER ── */
+.wrapper { max-width: 880px; margin: 0 auto; padding: 0 28px 120px; }
+
+/* ── SECTION ── */
+.section {
+  margin-top: 88px;
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.section.visible { opacity:1; transform:translateY(0); }
+
+/* Policies block — tighter gap between consecutive policy sections */
+.section.policy-section { margin-top: 60px; }
+.section.policy-section:first-of-type { margin-top: 88px; }
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 13px;
+  display: flex; align-items: center; gap: 14px;
+}
+.section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(38px, 7vw, 66px);
+  line-height: 1; margin-bottom: 26px; letter-spacing: 0.02em;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 5px; padding: 26px 28px;
+}
+.card + .card { margin-top: 10px; }
+.card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 19px; letter-spacing: 0.07em; color: var(--gold);
+  margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+}
+.ci {
+  width: 26px; height: 26px; flex-shrink: 0;
+  background: var(--gold-bg); border: 1px solid var(--gold-bd);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+}
+.ci svg { width:14px; height:14px; stroke:var(--gold); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ── POLICY LIST ── */
+.policy-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+.policy-list li {
+  display: flex; gap: 13px; align-items: flex-start;
+  font-size: 14.5px; color: #c8c8c8; line-height: 1.68;
+}
+.policy-list li .blt { width:15px; height:15px; margin-top:5px; flex-shrink:0; }
+.policy-list li .blt svg { width:15px; height:15px; stroke:var(--gold); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.policy-list li .lt { display:block; flex:1; min-width:0; }
+.policy-list li .lt strong { color:var(--white); font-weight:600; }
+
+/* ── ALERTS ── */
+.alert {
+  border-radius: 4px; padding: 14px 17px; font-size: 14px;
+  display: flex; gap: 12px; align-items: flex-start; line-height: 1.62;
+}
+.alert + .alert { margin-top: 10px; }
+.alert .ai { width:18px; height:18px; margin-top:1px; flex-shrink:0; }
+.alert .ai svg { width:18px; height:18px; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+.alert strong { font-weight:600; }
+.alert.danger  { background:var(--danger-bg);  border:1px solid var(--danger-bd);  color:var(--danger-tx);  }
+.alert.danger  .ai svg { stroke:var(--danger-tx); }
+.alert.warning { background:var(--warn-bg);    border:1px solid var(--warn-bd);    color:var(--warn-tx);    }
+.alert.warning .ai svg { stroke:var(--warn-tx); }
+.alert.info    { background:var(--info-bg);    border:1px solid var(--info-bd);    color:var(--info-tx);    }
+.alert.info    .ai svg { stroke:var(--info-tx); }
+.alert.success { background:var(--success-bg); border:1px solid var(--success-bd); color:var(--success-tx); }
+.alert.success .ai svg { stroke:var(--success-tx); }
+
+/* ── INFO GRID ── */
+.info-grid { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+@media(max-width:560px){ .info-grid{ grid-template-columns:1fr; } }
+.info-item {
+  background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+  border-radius: 4px; padding: 17px 20px;
+}
+.info-item .lbl {
+  font-family:'DM Mono',monospace; font-size:9.5px;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;
+}
+.info-item .val { font-size:15px; font-weight:600; color:var(--white); line-height:1.4; }
+
+/* ── CONTACT GRID ── */
+.contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(218px,1fr)); gap:13px; }
+.contact-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:5px; padding:20px 22px; transition:border-color 0.2s;
+}
+.contact-card:hover { border-color:var(--gold-dim); }
+.contact-role { font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.contact-name { font-weight:600; font-size:15px; margin-bottom:10px; }
+.contact-detail { font-size:13px; color:var(--muted); margin-bottom:3px; line-height:1.5; }
+.contact-detail strong { color:var(--white); font-weight:500; }
+.contact-detail a { color:var(--gold); text-decoration:none; font-weight:600; }
+.contact-detail a:hover { text-decoration:underline; }
+
+/* ── VALUES ── */
+.values-row { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
+@media(max-width:480px){ .values-row{ grid-template-columns:1fr; } }
+.value-card {
+  background:var(--card); border:1px solid var(--border);
+  border-top:3px solid var(--gold); border-radius:5px;
+  padding:26px 20px 22px; text-align:center;
+}
+.value-num { font-family:'Bebas Neue',sans-serif; font-size:50px; color:rgba(245,197,24,0.13); line-height:1; margin-bottom:4px; }
+.value-name { font-family:'Bebas Neue',sans-serif; font-size:21px; letter-spacing:0.08em; color:var(--gold); }
+
+/* ── POINT TABLE ── */
+.point-table { width:100%; border-collapse:collapse; margin-top:4px; }
+.point-table th {
+  text-align:left; font-family:'DM Mono',monospace; font-size:9.5px;
+  letter-spacing:0.18em; text-transform:uppercase; color:var(--muted);
+  padding:9px 13px; border-bottom:1px solid var(--border);
+}
+.point-table td {
+  padding:12px 13px; font-size:14px; color:#c8c8c8;
+  border-bottom:1px solid rgba(255,255,255,0.04); vertical-align:top; line-height:1.55;
+}
+.point-table tr:last-child td { border-bottom:none; }
+.point-table td:first-child { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--gold); white-space:nowrap; padding-top:11px; }
+.point-table td strong { color:var(--white); font-weight:600; }
+
+/* ── BREAK TABLE ── */
+.break-table { width:100%; border-collapse:collapse; }
+.break-table th {
+  text-align:left; font-family:'DM Mono',monospace; font-size:9.5px;
+  letter-spacing:0.18em; text-transform:uppercase; color:var(--muted);
+  padding:9px 13px; border-bottom:1px solid var(--border);
+}
+.break-table td {
+  padding:12px 13px; font-size:14px; color:#c8c8c8;
+  border-bottom:1px solid rgba(255,255,255,0.04); vertical-align:middle;
+}
+.break-table tr:last-child td { border-bottom:none; }
+.break-table td:first-child { font-weight:600; color:var(--white); }
+.tag {
+  display:inline-block; font-family:'DM Mono',monospace; font-size:10px;
+  padding:3px 9px; border-radius:2px; letter-spacing:0.06em; font-weight:500;
+}
+.tag.paid   { background:var(--success-bg); color:var(--success-tx); border:1px solid var(--success-bd); }
+.tag.unpaid { background:var(--danger-bg);  color:var(--danger-tx);  border:1px solid var(--danger-bd); }
+
+/* ── SPH BENCHMARKS ── */
+.sph-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-top:4px; }
+@media(max-width:580px){ .sph-grid{ grid-template-columns:1fr; } }
+.sph-item {
+  background: rgba(255,255,255,0.025); border:1px solid var(--border);
+  border-radius:4px; padding:20px 20px 18px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.sph-icon {
+  width:36px; height:36px;
+  background:var(--gold-bg); border:1px solid var(--gold-bd);
+  border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.sph-icon svg { width:17px; height:17px; stroke:var(--gold); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+.sph-text { font-size:13.5px; color:#c8c8c8; line-height:1.55; }
+.sph-text strong { color:var(--white); font-weight:600; display:block; margin-bottom:2px; font-size:14px; }
+.sph-text .sph-range { font-family:'Bebas Neue',sans-serif; font-size:34px; color:var(--gold); display:block; line-height:1; margin-bottom:4px; }
+
+/* ── UNIFORM GRID ── */
+.uniform-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(172px,1fr)); gap:13px; }
+.uniform-item {
+  background:rgba(255,255,255,0.025); border:1px solid var(--border);
+  border-radius:4px; padding:22px 18px 20px; text-align:center;
+  transition:border-color 0.2s, background 0.2s;
+}
+.uniform-item:hover { border-color:var(--gold-bd); background:var(--gold-bg); }
+.u-icon {
+  width:40px; height:40px; margin:0 auto 12px;
+  background:var(--gold-bg); border:1px solid var(--gold-bd);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+.u-icon svg { width:19px; height:19px; stroke:var(--gold); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+.u-name { font-weight:600; font-size:14px; margin-bottom:5px; }
+.u-detail { font-size:12.5px; color:var(--muted); line-height:1.5; }
+.u-req {
+  display:inline-block; margin-top:10px;
+  font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--gold); border:1px solid var(--gold-bd); padding:2px 8px; border-radius:2px;
+}
+
+/* ── SAFETY COLS ── */
+.safety-grid { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+@media(max-width:560px){ .safety-grid{ grid-template-columns:1fr; } }
+.safety-col { background:var(--card); border:1px solid var(--border); border-radius:5px; overflow:hidden; }
+.safety-col-head {
+  padding:13px 18px; font-family:'Bebas Neue',sans-serif;
+  font-size:17px; letter-spacing:0.07em;
+  display:flex; align-items:center; gap:9px;
+}
+.safety-col-head svg { width:15px; height:15px; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.safety-col.standard .safety-col-head { background:var(--warn-bg); color:var(--warn-tx); border-bottom:1px solid var(--warn-bd); }
+.safety-col.standard .safety-col-head svg { stroke:var(--warn-tx); }
+.safety-col.severe   .safety-col-head { background:var(--danger-bg); color:var(--danger-tx); border-bottom:1px solid var(--danger-bd); }
+.safety-col.severe   .safety-col-head svg { stroke:var(--danger-tx); }
+.safety-col ul { list-style:none; padding:14px 18px 16px; display:flex; flex-direction:column; gap:8px; }
+.safety-col ul li { display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#c8c8c8; line-height:1.5; }
+.safety-col ul li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--muted); flex-shrink:0; margin-top:7px; }
+
+/* ── EXAMPLE BOX ── */
+.example-box {
+  background: rgba(255,255,255,0.025); border:1px solid var(--border);
+  border-radius:4px; padding:15px 19px; margin-top:13px;
+}
+.example-box .ex-label {
+  font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:7px;
+}
+.example-box p { font-size:13.5px; color:#c0c0c0; line-height:1.65; }
+.example-box p + p { margin-top:5px; }
+
+/* ── SECTION DIVIDER (between policies) ── */
+.policy-divider {
+  margin: 48px 0 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
+
+/* ── SPLIT CARD ── */
+.split-card { background:var(--card); border:1px solid var(--border); border-radius:5px; overflow:hidden; }
+.split-card + .split-card { margin-top:13px; }
+.split-card-head { padding:18px 24px 16px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; gap:14px; }
+.split-card-head .sc-icon { width:34px; height:34px; flex-shrink:0; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+.split-card-head .sc-icon svg { width:17px; height:17px; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+.split-card-head .sc-text { flex:1; min-width:0; }
+.split-card-head .sc-label { font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:0.07em; line-height:1.1; margin-bottom:5px; }
+.split-card-head .sc-desc { font-size:14px; color:#c8c8c8; line-height:1.62; }
+.split-card-head .sc-desc strong { color:var(--white); font-weight:600; }
+.split-card.ok   .split-card-head { background:var(--success-bg); border-bottom-color:var(--success-bd); }
+.split-card.ok   .split-card-head .sc-label { color:var(--success-tx); }
+.split-card.ok   .split-card-head .sc-icon  { background:var(--success-bg); border:1px solid var(--success-bd); }
+.split-card.ok   .split-card-head .sc-icon svg { stroke:var(--success-tx); }
+.split-card.warn .split-card-head { background:var(--warn-bg); border-bottom-color:var(--warn-bd); }
+.split-card.warn .split-card-head .sc-label { color:var(--warn-tx); }
+.split-card.warn .split-card-head .sc-icon  { background:var(--warn-bg); border:1px solid var(--warn-bd); }
+.split-card.warn .split-card-head .sc-icon svg { stroke:var(--warn-tx); }
+.split-card.bad  .split-card-head { background:var(--danger-bg); border-bottom-color:var(--danger-bd); }
+.split-card.bad  .split-card-head .sc-label { color:var(--danger-tx); }
+.split-card.bad  .split-card-head .sc-icon  { background:var(--danger-bg); border:1px solid var(--danger-bd); }
+.split-card.bad  .split-card-head .sc-icon svg { stroke:var(--danger-tx); }
+.split-card-body { padding:18px 24px 20px; }
+.split-card-body p { font-size:14.5px; color:#c8c8c8; line-height:1.65; }
+.split-card-body p strong { color:var(--white); font-weight:600; }
+
+/* ── DAILY STANDARDS GRID ── */
+.daily-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 13px;
+}
+@media(max-width:560px){ .daily-grid{ grid-template-columns:1fr; } }
+.daily-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+  border-radius: 4px; padding: 16px 17px;
+}
+.daily-icon {
+  width: 30px; height: 30px; flex-shrink: 0;
+  background: var(--gold-bg); border: 1px solid var(--gold-bd);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.daily-icon svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.daily-text { font-size: 14px; color: #c8c8c8; line-height: 1.62; min-width: 0; }
+.daily-text strong { color: var(--white); display: block; margin-bottom: 3px; }
+
+/* ── FOOTER ── */
+.footer {
+  border-top:1px solid var(--border); padding:52px 28px;
+  text-align:center; color:var(--muted); font-size:13px;
+}
+.footer-logo { font-family:'Bebas Neue',sans-serif; font-size:30px; letter-spacing:0.06em; color:var(--white); margin-bottom:8px; }
+.footer-logo span { color:var(--gold); }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes pulseLine {
+  0%,100% { opacity:0.35; }
+  50%      { opacity:1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-badge">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Employee Welcome Packet &nbsp;·&nbsp; Updated 08/2025
+  </div>
+  <h1>Welcome to<span>On The Level</span></h1>
+  <p class="hero-sub">We're glad you're here. This packet covers everything you need to start strong as an <strong>Amazon Delivery Associate</strong> at ONTH.</p>
+  <p class="hero-meta">Fresno, CA &nbsp;·&nbsp; 825 N Clovis Ave</p>
+  <div class="scroll-hint">Scroll to begin</div>
+</section>
+
+<div class="wrapper">
+
+<!-- ══ 1. WHO WE ARE ═════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Who We Are</div>
+  <div class="section-title">Culture &amp; Values</div>
+  <div class="values-row">
+    <div class="value-card"><div class="value-num">01</div><div class="value-name">Reliability</div></div>
+    <div class="value-card"><div class="value-num">02</div><div class="value-name">Teamwork</div></div>
+    <div class="value-card"><div class="value-num">03</div><div class="value-name">Mentorship</div></div>
+  </div>
+</div>
+
+<!-- ══ 2. STAY CONNECTED ══════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Stay Connected</div>
+  <div class="section-title">Communication</div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-role">Dispatch Line</div>
+      <div class="contact-name">On-Road &amp; General Issues</div>
+      <div class="contact-detail"><a href="tel:5597531850">559.753.1850</a></div>
+      <div class="contact-detail" style="margin-top:9px;font-size:12.5px;">Road issues, call-outs, time-off requests, anything urgent.</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-role">HR – Serena</div>
+      <div class="contact-name">Payroll, Benefits &amp; HR</div>
+      <div class="contact-detail"><a href="tel:5594223884">559.422.3884</a></div>
+      <div class="contact-detail" style="margin-top:9px;font-size:12.5px;">Serious issues, hiring, benefits, payroll, timesheets, PTO.</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-role">Owner</div>
+      <div class="contact-name">Travis Clark</div>
+      <div class="contact-detail"><strong>travis@onthelevellogistics.com</strong></div>
+      <div class="contact-detail" style="margin-top:4px;">or through Dispatch</div>
+    </div>
+  </div>
+  <div class="alert info" style="margin-top:13px;">
+    <span class="ai"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+    <div>All payroll, scheduling, and timekeeping is managed through <strong>ADP</strong>. Download the ADP app and set up your account before your first shift.</div>
+  </div>
+</div>
+
+<!-- ══ 3. TIMEKEEPING ════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Timekeeping</div>
+  <div class="section-title">Clock In / Clock Out</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      Clock In
+    </div>
+    <ul class="policy-list">
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Clock in via <strong>ADP at the station</strong> — no earlier than <strong>5 minutes before</strong> your scheduled start time.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Do <strong>not</strong> begin your DVIC until you have successfully clocked in on ADP.</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>
+      Clock Out
+    </div>
+    <ul class="policy-list">
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Your ADP clock-out must fall no later than <strong>10 minutes</strong> after your DVIC out time on Amazon Flex.</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
+      Editing Your Timecard
+    </div>
+    <ul class="policy-list">
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Always maintain accurate IN and OUT records in ADP.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">If you need help retrieving your time, contact the <strong>Dispatch Line</strong> or <strong>HR</strong>.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">To edit: <strong>ADP App → Timecard (top tab) → Find the date → Edit</strong>.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ 4. SCHEDULING ══════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label">Scheduling</div>
+  <div class="section-title">Time Off &amp; Schedule</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      Requesting Time Off
+    </div>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Submit all time-off requests through <strong>ADP</strong> or by contacting <strong>HR (Serena)</strong> directly at 559.422.3884. Requests should be made as far in advance as possible. PTO usage requires approval and should be planned to avoid attendance point violations.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/></svg></span>
+      Checking Your Schedule
+    </div>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Your schedule is available through the <strong>ADP app</strong>. Check it regularly to stay on top of upcoming shifts. If you spot any discrepancies, contact Dispatch or HR right away.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     POLICIES — all together below
+     ════════════════════════════════════════════════════════ -->
+
+<!-- ══ POLICY: CALL-OUT ══════════════════════════════════ -->
+<div class="section policy-section">
+  <div class="section-label">Policy</div>
+  <div class="section-title">Call-Out Policy</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
+      Overview
+    </div>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Reliable attendance is an essential function of your job. In rare instances when an employee cannot avoid being late, is unable to work as scheduled, or must leave early, they must personally notify their supervisor as soon as possible — and always in advance of the anticipated absence.</p>
+    <div class="alert info" style="margin-top:15px;">
+      <span class="ai"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+      <div>Attendance is tracked on a <strong>6-week rolling cycle</strong> with a <strong>3-point limit</strong>. Reaching a 4th point triggers an automatic Final Write-Up and Attendance Probation.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+      Weekday Call-Out Points
+    </div>
+    <table class="point-table">
+      <thead><tr><th>Points</th><th>Notice Given</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--success-tx)">Excused</td><td><strong>Full 24 hours</strong> before shift</td><td style="color:var(--muted);font-size:13px;">Call by 9:00 AM the day before</td></tr>
+        <tr><td>1 PT</td><td>At least <strong>4 hours</strong> notice</td><td style="color:var(--muted);font-size:13px;">Call by 5:00 AM day of shift</td></tr>
+        <tr><td>2 PTS</td><td>Less than <strong>4 hours</strong> notice</td><td style="color:var(--muted);font-size:13px;">Call by 8:00 AM day of shift</td></tr>
+        <tr><td style="color:var(--danger-tx)">4 PTS</td><td><strong>1 hour or less</strong> — Auto Final</td><td style="color:var(--muted);font-size:13px;">Call at 10:00 AM (shift starts 11:00 AM)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/></svg></span>
+      Weekend Call-Out Points
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Weekend shifts carry higher point values — plan accordingly.</p>
+    <table class="point-table">
+      <thead><tr><th>Points</th><th>Notice Given</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--success-tx)">Excused</td><td><strong>Full 24 hours</strong> before shift</td><td style="color:var(--muted);font-size:13px;">Call by 9:00 AM the day before</td></tr>
+        <tr><td>2 PTS</td><td>At least <strong>4 hours</strong> notice</td><td style="color:var(--muted);font-size:13px;">Call by 5:00 AM day of shift</td></tr>
+        <tr><td>3 PTS</td><td>Less than <strong>4 hours</strong> notice</td><td style="color:var(--muted);font-size:13px;">Call by 8:00 AM day of shift</td></tr>
+        <tr><td style="color:var(--danger-tx)">4 PTS</td><td><strong>1 hour or less</strong> — Auto Final</td><td style="color:var(--muted);font-size:13px;">Call at 10:00 AM (shift starts 11:00 AM)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></span>
+      Call-In Procedures
+    </div>
+    <ul class="policy-list">
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Always call the <strong>Dispatch Line (559.753.1850)</strong> as soon as you know you cannot make your shift.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">If you can't reach a supervisor, leave a voicemail and <strong>keep following up</strong> until you speak with someone directly.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Failure to follow proper call-in procedures may result in disciplinary action up to and including termination.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Missing <strong>2 scheduled shifts without any notice</strong> is considered Job Abandonment and will be treated as a voluntary resignation.</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+      Probation &amp; Excused Absences
+    </div>
+    <ul class="policy-list">
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Reaching <strong>3 points within a 6-week cycle</strong> results in a final write-up and a 1-month perfect-attendance probation period.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Surpassing 3 points or violating attendance probation is subject to <strong>termination</strong>.</span></li>
+    </ul>
+    <div class="alert success" style="margin-top:15px;">
+      <span class="ai"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+      <div>A point is <strong>excused</strong> by using a full <strong>8 hours of PTO</strong>, submitting a <strong>doctor's note</strong>, or providing a <strong>police report</strong> for the day missed.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ POLICY: REST BREAKS ═══════════════════════════════ -->
+<div class="section policy-section">
+  <div class="section-label">Policy</div>
+  <div class="section-title">Rest Break Policy</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
+      Break Summary
+    </div>
+    <table class="break-table">
+      <thead><tr><th>Break Type</th><th>Duration</th><th>Count</th><th>Pay Status</th></tr></thead>
+      <tbody>
+        <tr><td>Rest Break</td><td>15 minutes</td><td>× 2</td><td><span class="tag paid">Paid</span></td></tr>
+        <tr><td>Lunch Break</td><td>30 minutes</td><td>× 1</td><td><span class="tag unpaid">Unpaid</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      Rest Period Rules
+    </div>
+    <ul class="policy-list">
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Employees receive one <strong>15-minute paid rest break</strong> for every 4 hours worked. For an 8-hour shift that means <strong>two 15-minute breaks</strong>.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Breaks should be taken roughly in the <strong>middle of each work period</strong>. It is your responsibility to take them on time — don't wait to be reminded.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Rest periods are <strong>paid and counted as hours worked</strong>. You do not need to log them on your timecard.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Rest breaks <strong>cannot be combined</strong> with each other or with your meal period.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Rest breaks <strong>cannot be waived</strong> to shorten your workday or saved up for any other purpose.</span></li>
+    </ul>
+    <div class="alert danger" style="margin-top:15px;">
+      <span class="ai"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      <div><strong>Not allowed:</strong> Taking both 15-min breaks back-to-back, combining them with your 30-min lunch, taking them before you clock on, or using them to clock out early.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      Meal Break Violation
+    </div>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Your 30-minute lunch <strong>must</strong> be completed before your 5th hour of work — at minimum 1 minute before the 5-hour mark. Failure results in a <strong>Meal Break Violation and an automatic Final Write-Up</strong>. Two or more violations may lead to <strong>termination</strong>.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      Recommended Break Schedule
+    </div>
+    <div class="example-box" style="margin-top:0;">
+      <div class="ex-label">8-Hour Shift Example</div>
+      <p>Clock in 11:00 AM &rarr; 1st Break 1:00 PM &rarr; Lunch 3:00 PM &rarr; 2nd Break 5:30 PM &rarr; Clock out 7:30 PM</p>
+    </div>
+    <div class="example-box">
+      <div class="ex-label">10-Hour Shift Example</div>
+      <p>Clock in 11:00 AM &rarr; Lunch 2:00 PM &rarr; 1st Break 4:30 PM &rarr; 2nd Break 6:30 PM &rarr; Clock out 9:30 PM</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ POLICY: ROUTE EXPECTATIONS & SPH ════════════════ -->
+<div class="section policy-section">
+  <div class="section-label">Policy</div>
+  <div class="section-title">Route Expectations &amp; SPH</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      Expectation
+    </div>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;margin-bottom:13px;">ONTH requires all Delivery Associates to complete their assigned routes within the standard time set by Amazon. Because every route is different, your main goal is to stay <strong>"On Time"</strong> or <strong>"Ahead"</strong> of the Amazon routing curve throughout your shift.</p>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">To keep a good pace, stay organized in the van, walk briskly to each delivery location, and minimize distractions. <strong>Safety is always the top priority</strong> — never rush or compromise safety to work faster.</p>
+    <div class="alert warning" style="margin-top:15px;">
+      <span class="ai"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      <div>Falling <strong>15–20 stops behind</strong> the Amazon standard means you will need a rescue. Consistently needing rescues to finish a standard route is a failure to meet job expectations and may result in <strong>disciplinary action</strong>.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      Recommended SPH Benchmarks
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Every route is different — your exact required pace will vary. Use these as your target ranges.</p>
+    <div class="sph-grid">
+      <div class="sph-item">
+        <div class="sph-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="sph-text">
+          <span class="sph-range">25 – 35</span>
+          <strong>Stops Per Hour</strong>
+          High-Density Residential<br>
+          <span style="font-size:12.5px;color:var(--muted);">Houses &amp; Neighborhoods</span>
+        </div>
+      </div>
+      <div class="sph-item">
+        <div class="sph-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div class="sph-text">
+          <span class="sph-range">20 – 25</span>
+          <strong>Stops Per Hour</strong>
+          Mixed Commercial &amp; Apartments
+        </div>
+      </div>
+      <div class="sph-item">
+        <div class="sph-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 10"/><path d="M3 20h18"/></svg>
+        </div>
+        <div class="sph-text">
+          <span class="sph-range">15 – 20</span>
+          <strong>Stops Per Hour</strong>
+          Rural &amp; Country Routes
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ POLICY: UNIFORM ═══════════════════════════════════ -->
+<div class="section policy-section">
+  <div class="section-label">Policy</div>
+  <div class="section-title">Uniform Policy</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg></span>
+      Required Amazon-Branded Attire
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.65;">All DAs must wear a complete Amazon-branded uniform every shift. Your uniform represents both ONTH and Amazon on every doorstep. Non-compliance may result in being sent home to change before your route begins.</p>
+    <div class="uniform-grid">
+      <div class="uniform-item">
+        <div class="u-icon"><svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg></div>
+        <div class="u-name">Top</div>
+        <div class="u-detail">Amazon-branded short or long sleeve polo shirt</div>
+        <div class="u-req">Required</div>
+      </div>
+      <div class="uniform-item">
+        <div class="u-icon"><svg viewBox="0 0 24 24"><path d="M6 2l1.5 8h9L18 2"/><path d="M7.5 10v12h9V10"/><line x1="4" y1="6" x2="20" y2="6"/></svg></div>
+        <div class="u-name">Bottoms</div>
+        <div class="u-detail">Amazon-branded shorts or pants</div>
+        <div class="u-req">Required</div>
+      </div>
+      <div class="uniform-item">
+        <div class="u-icon"><svg viewBox="0 0 24 24"><path d="M12 2L8 7H3v4l2 1v8a1 1 0 001 1h12a1 1 0 001-1v-8l2-1V7h-5L12 2z"/><line x1="12" y1="7" x2="12" y2="21"/></svg></div>
+        <div class="u-name">Outer Layer</div>
+        <div class="u-detail">Amazon-branded vest <em>or</em> jacket</div>
+        <div class="u-req">Required</div>
+      </div>
+    </div>
+    <hr class="div">
+    <ul class="policy-list">
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">All uniform pieces must be <strong>clean, intact, and properly worn</strong> at all times during your shift.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Do not mix Amazon-branded items with non-branded clothing visible while on route.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Uniforms must be in good repair — no torn, faded, or altered items that compromise our professional image.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Questions about obtaining your uniform? Contact <strong>HR (Serena)</strong> at 559.422.3884.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ POLICY: SAFETY INFRACTIONS ═══════════════════════ -->
+<div class="section policy-section">
+  <div class="section-label">Policy</div>
+  <div class="section-title">Safety Infraction Policy</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      Policy Statement
+    </div>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Safe driving is a <strong>fundamental requirement</strong> of your position. The safety of our team and the public is our highest priority and is strictly non-negotiable. All safety infractions are closely monitored, officially documented, and will result in immediate disciplinary action.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+      Disciplinary Procedures
+    </div>
+    <ul class="policy-list">
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt"><strong>Immediate Action:</strong> Your route will be paused immediately (dependent on rescue availability) and you will receive a formal written warning.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt"><strong>Alternate Action:</strong> If operational constraints prevent a same-day route pause, you will forfeit your next scheduled shift in lieu of the route pause.</span></li>
+    </ul>
+  </div>
+
+  <div class="safety-grid">
+    <div class="safety-col standard">
+      <div class="safety-col-head">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Standard Infractions
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);padding:11px 18px 0;line-height:1.55;">Results in a <strong style="color:var(--warn-tx);">same-day route pause</strong> (or forfeited shift) + formal write-up.</p>
+      <ul>
+        <li>Seat Belt Violation</li>
+        <li>Following Distance Violation</li>
+        <li>Distracted Driving</li>
+        <li>Stop Sign Violation</li>
+        <li>Illegal U-Turn</li>
+        <li>Speeding</li>
+      </ul>
+    </div>
+    <div class="safety-col severe">
+      <div class="safety-col-head">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        Severe Infractions
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);padding:11px 18px 0;line-height:1.55;">Demonstrates a critical lapse in safety. Results in a route pause + <strong style="color:var(--danger-tx);">immediate suspension or termination</strong>.</p>
+      <ul>
+        <li>Red Light Infraction — Severe</li>
+        <li>Stop Sign Infraction — Severe</li>
+        <li>Speeding — Severe</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ POLICY: ADDITIONAL EXPECTATIONS ═════════════════ -->
+<div class="section policy-section">
+  <div class="section-label">Policy</div>
+  <div class="section-title">Additional Expectations</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
+      Daily Standards
+    </div>
+    <div class="daily-grid">
+      <div class="daily-item">
+        <div class="daily-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="daily-text"><strong>Perfect DVIC</strong>Complete a thorough, accurate DVIC every shift before departing.</div>
+      </div>
+      <div class="daily-item">
+        <div class="daily-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="daily-text"><strong>Scorecard Metrics</strong>Maintain strong scores across all Amazon performance categories.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert danger" style="margin-top:13px;">
+    <span class="ai"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></span>
+    <div><strong>Pee Bottle Policy:</strong> Use of any bottle or container as a restroom substitute inside your vehicle is strictly prohibited. Use designated facilities during breaks or stop at an appropriate location. Violations result in immediate disciplinary action.</div>
+  </div>
+</div>
+
+<!-- ══ POLICY: ACCIDENTS & VEHICLE DAMAGE ═══════════════ -->
+<div class="section policy-section">
+  <div class="section-label">Policy</div>
+  <div class="section-title">Accidents &amp; Vehicle Damage</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+      What You Need to Know
+    </div>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">You are on the road all day, and we understand that minor things can happen. When they do, <strong>communication is everything.</strong> How you handle a situation matters far more than the situation itself — honesty and quick reporting will always work in your favor.</p>
+  </div>
+
+  <div class="split-card ok">
+    <div class="split-card-head">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="sc-text">
+        <div class="sc-label">Minor Incidents — Always Report It</div>
+        <div class="sc-desc">Fender bender, scrape, or any contact with an object or vehicle.</div>
+      </div>
+    </div>
+    <div class="split-card-body">
+      <p>If anything happens — no matter how small — <strong>call Dispatch immediately.</strong> Do not wait until you return to the station. As long as you are honest and upfront with us, we will work through it together. A quick phone call goes a long way. It is the cover-ups and delays that cause the real problems, not the incident itself.</p>
+    </div>
+  </div>
+
+  <div class="split-card bad">
+    <div class="split-card-head">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="sc-text">
+        <div class="sc-label">Major Incidents — Formal Review</div>
+        <div class="sc-desc">Gross negligence, reckless driving, or totaling a vehicle.</div>
+      </div>
+    </div>
+    <div class="split-card-body">
+      <p>Severe incidents are handled differently and will require a <strong>formal safety and employment review.</strong> These situations are taken very seriously and may result in suspension or termination depending on the circumstances. Safe, responsible driving is a non-negotiable part of this job.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ POLICY: THE RESCUE POLICY ════════════════════════ -->
+<div class="section policy-section">
+  <div class="section-label">Policy</div>
+  <div class="section-title">The Rescue Policy</div>
+
+  <div class="card">
+    <div class="card-title">
+      <span class="ci"><svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg></span>
+      We Operate as a Team
+    </div>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">At ONTH, we look out for one another. The goal at the end of every shift is simple: <strong>everyone gets back to the station safely and on time.</strong> That only happens when the team works together.</p>
+  </div>
+
+  <div class="split-card ok">
+    <div class="split-card-head">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="sc-text">
+        <div class="sc-label">Helping Out — Doing a Rescue</div>
+        <div class="sc-desc">When you finish early and a teammate needs help.</div>
+      </div>
+    </div>
+    <div class="split-card-body">
+      <p>If you finish your route early, Dispatch may ask you to pick up a few stops from a teammate who is running behind. <strong>Refusing a rescue is not acceptable.</strong> We are a team — today you're helping out, and tomorrow you might be the one who needs it. A positive attitude toward rescues reflects well on your performance and your character.</p>
+    </div>
+  </div>
+
+  <div class="split-card warn">
+    <div class="split-card-head">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="sc-text">
+        <div class="sc-label">Needing Help — Being Rescued</div>
+        <div class="sc-desc">When you're running behind and need stops taken.</div>
+      </div>
+    </div>
+    <div class="split-card-body">
+      <p>We are always willing to help on a tough day — heavy routes and unexpected delays happen to everyone. However, <strong>consistently needing to be rescued shift after shift</strong> signals a performance issue. If this becomes a pattern, we will schedule a review to work with you on improving your pace and routing efficiency. The goal is to set you up for success, not to penalize you.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrapper -->
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">On The <span>Level</span> Logistics</div>
+  <p>825 N Clovis Ave &nbsp;·&nbsp; Fresno, CA &nbsp;·&nbsp; Dispatch: 559.753.1850</p>
+  <p style="margin-top:8px;">Questions? Reach out to any leadership member — we're here to help you succeed.</p>
+  <p style="margin-top:24px;font-size:10.5px;font-family:'DM Mono',monospace;letter-spacing:0.12em;color:#3e3f44;">UPDATED 08/2025 &nbsp;·&nbsp; ONTH INTERNAL USE ONLY</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(
+    e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }),
+    { threshold: 0.06 }
+  );
+  document.querySelectorAll('.section').forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
