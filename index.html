@@ -48,7 +48,7 @@ body {
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
   text-align: center;
-  padding: 80px 24px 110px;
+  padding: 80px 24px 60px;
   overflow: hidden;
   background: var(--dark);
 }
@@ -92,18 +92,9 @@ body {
   animation: fadeUp 0.65s 0.3s ease both;
 }
 .scroll-hint {
-  position: absolute; 
-  bottom: 40px; 
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  gap: 10px;
-  color: var(--muted); 
-  font-size: 10px; 
-  letter-spacing: 0.2em; 
-  text-transform: uppercase;
+  position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: var(--muted); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
   font-family: 'DM Mono', monospace;
   animation: fadeUp 0.65s 0.5s ease both;
 }
@@ -124,7 +115,7 @@ body {
 }
 .section.visible { opacity:1; transform:translateY(0); }
 
-/* Policies block  tighter gap between consecutive policy sections */
+/* Policies block — tighter gap between consecutive policy sections */
 .section.policy-section { margin-top: 60px; }
 .section.policy-section:first-of-type { margin-top: 88px; }
 
@@ -468,7 +459,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
 
   <div class="info-grid" style="margin-bottom:10px;">
     <div class="info-item">
-      <div class="lbl">Training  Day 1 &amp; 2</div>
+      <div class="lbl">Training — Day 1 &amp; 2</div>
       <div class="val">8:00 AM Start</div>
     </div>
     <div class="info-item">
@@ -483,7 +474,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
       Clock In
     </div>
     <ul class="policy-list">
-      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Clock in via <strong>ADP at the station</strong>  no earlier than <strong>5 minutes before</strong> your scheduled start time.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Clock in via <strong>ADP at the station</strong> — no earlier than <strong>5 minutes before</strong> your scheduled start time.</span></li>
       <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Do <strong>not</strong> begin your DVIC until you have successfully clocked in on ADP.</span></li>
     </ul>
   </div>
@@ -534,7 +525,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
 </div>
 
 <!-- ════════════════════════════════════════════════════════
-     POLICIES  all together below
+     POLICIES — all together below
      ════════════════════════════════════════════════════════ -->
 
 <!-- ══ POLICY: CALL-OUT ══════════════════════════════════ -->
@@ -547,7 +538,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
       <span class="ci"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
       Overview
     </div>
-    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Reliable attendance is an essential function of your job. In rare instances when an employee cannot avoid being late, is unable to work as scheduled, or must leave early, they must personally notify their supervisor as soon as possible  and always in advance of the anticipated absence.</p>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Reliable attendance is an essential function of your job. In rare instances when an employee cannot avoid being late, is unable to work as scheduled, or must leave early, they must personally notify their supervisor as soon as possible — and always in advance of the anticipated absence.</p>
     <div class="alert info" style="margin-top:15px;">
       <span class="ai"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
       <div>Attendance is tracked on a <strong>6-week rolling cycle</strong> with a <strong>3-point limit</strong>. Reaching a 4th point triggers an automatic Final Write-Up and Attendance Probation.</div>
@@ -565,7 +556,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
         <tr><td style="color:var(--success-tx)">Excused</td><td><strong>Full 24 hours</strong> before shift</td><td style="color:var(--muted);font-size:13px;">Call by 9:00 AM the day before</td></tr>
         <tr><td>1 PT</td><td>At least <strong>4 hours</strong> notice</td><td style="color:var(--muted);font-size:13px;">Call by 5:00 AM day of shift</td></tr>
         <tr><td>2 PTS</td><td>Less than <strong>4 hours</strong> notice</td><td style="color:var(--muted);font-size:13px;">Call by 8:00 AM day of shift</td></tr>
-        <tr><td style="color:var(--danger-tx)">4 PTS</td><td><strong>1 hour or less</strong>  Auto Final</td><td style="color:var(--muted);font-size:13px;">Call at 10:00 AM (shift starts 11:00 AM)</td></tr>
+        <tr><td style="color:var(--danger-tx)">4 PTS</td><td><strong>1 hour or less</strong> — Auto Final</td><td style="color:var(--muted);font-size:13px;">Call at 10:00 AM (shift starts 11:00 AM)</td></tr>
       </tbody>
     </table>
   </div>
@@ -575,14 +566,14 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
       <span class="ci"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/></svg></span>
       Weekend Call-Out Points
     </div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Weekend shifts carry higher point values  plan accordingly.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Weekend shifts carry higher point values — plan accordingly.</p>
     <table class="point-table">
       <thead><tr><th>Points</th><th>Notice Given</th><th>Example</th></tr></thead>
       <tbody>
         <tr><td style="color:var(--success-tx)">Excused</td><td><strong>Full 24 hours</strong> before shift</td><td style="color:var(--muted);font-size:13px;">Call by 9:00 AM the day before</td></tr>
         <tr><td>2 PTS</td><td>At least <strong>4 hours</strong> notice</td><td style="color:var(--muted);font-size:13px;">Call by 5:00 AM day of shift</td></tr>
         <tr><td>3 PTS</td><td>Less than <strong>4 hours</strong> notice</td><td style="color:var(--muted);font-size:13px;">Call by 8:00 AM day of shift</td></tr>
-        <tr><td style="color:var(--danger-tx)">4 PTS</td><td><strong>1 hour or less</strong>  Auto Final</td><td style="color:var(--muted);font-size:13px;">Call at 10:00 AM (shift starts 11:00 AM)</td></tr>
+        <tr><td style="color:var(--danger-tx)">4 PTS</td><td><strong>1 hour or less</strong> — Auto Final</td><td style="color:var(--muted);font-size:13px;">Call at 10:00 AM (shift starts 11:00 AM)</td></tr>
       </tbody>
     </table>
   </div>
@@ -642,7 +633,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
     </div>
     <ul class="policy-list">
       <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Employees receive one <strong>15-minute paid rest break</strong> for every 4 hours worked. For an 8-hour shift that means <strong>two 15-minute breaks</strong>.</span></li>
-      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Breaks should be taken roughly in the <strong>middle of each work period</strong>. It is your responsibility to take them on time  don't wait to be reminded.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Breaks should be taken roughly in the <strong>middle of each work period</strong>. It is your responsibility to take them on time — don't wait to be reminded.</span></li>
       <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Rest periods are <strong>paid and counted as hours worked</strong>. You do not need to log them on your timecard.</span></li>
       <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Rest breaks <strong>cannot be combined</strong> with each other or with your meal period.</span></li>
       <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Rest breaks <strong>cannot be waived</strong> to shorten your workday or saved up for any other purpose.</span></li>
@@ -658,7 +649,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
       <span class="ci"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
       Meal Break Violation
     </div>
-    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Your 30-minute lunch <strong>must</strong> be completed before your 5th hour of work  at minimum 1 minute before the 5-hour mark. Failure results in a <strong>Meal Break Violation and an automatic Final Write-Up</strong>. Two or more violations may lead to <strong>termination</strong>.</p>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">Your 30-minute lunch <strong>must</strong> be completed before your 5th hour of work — at minimum 1 minute before the 5-hour mark. Failure results in a <strong>Meal Break Violation and an automatic Final Write-Up</strong>. Two or more violations may lead to <strong>termination</strong>.</p>
   </div>
 
   <div class="card">
@@ -688,7 +679,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
       Expectation
     </div>
     <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;margin-bottom:13px;">ONTH requires all Delivery Associates to complete their assigned routes within the standard time set by Amazon. Because every route is different, your main goal is to stay <strong>"On Time"</strong> or <strong>"Ahead"</strong> of the Amazon routing curve throughout your shift.</p>
-    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">To keep a good pace, stay organized in the van, walk briskly to each delivery location, and minimize distractions. <strong>Safety is always the top priority</strong>  never rush or compromise safety to work faster.</p>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">To keep a good pace, stay organized in the van, walk briskly to each delivery location, and minimize distractions. <strong>Safety is always the top priority</strong> — never rush or compromise safety to work faster.</p>
     <div class="alert warning" style="margin-top:15px;">
       <span class="ai"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
       <div>Falling <strong>15–20 stops behind</strong> the Amazon standard means you will need a rescue. Consistently needing rescues to finish a standard route is a failure to meet job expectations and may result in <strong>disciplinary action</strong>.</div>
@@ -700,7 +691,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
       <span class="ci"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
       Recommended SPH Benchmarks
     </div>
-    <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Every route is different  your exact required pace will vary. Use these as your target ranges.</p>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Every route is different — your exact required pace will vary. Use these as your target ranges.</p>
     <div class="sph-grid">
       <div class="sph-item">
         <div class="sph-icon">
@@ -772,7 +763,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
     <ul class="policy-list">
       <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">All uniform pieces must be <strong>clean, intact, and properly worn</strong> at all times during your shift.</span></li>
       <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Do not mix Amazon-branded items with non-branded clothing visible while on route.</span></li>
-      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Uniforms must be in good repair  no torn, faded, or altered items that compromise our professional image.</span></li>
+      <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Uniforms must be in good repair — no torn, faded, or altered items that compromise our professional image.</span></li>
       <li><span class="blt"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span><span class="lt">Questions about obtaining your uniform? Contact <strong>HR (Serena)</strong> at 559.422.3884.</span></li>
     </ul>
   </div>
@@ -825,9 +816,9 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
       </div>
       <p style="font-size:12.5px;color:var(--muted);padding:11px 18px 0;line-height:1.55;">Demonstrates a critical lapse in safety. Results in a route pause + <strong style="color:var(--danger-tx);">immediate suspension or termination</strong>.</p>
       <ul>
-        <li>Red Light Infraction  Severe</li>
-        <li>Stop Sign Infraction  Severe</li>
-        <li>Speeding  Severe</li>
+        <li>Red Light Infraction — Severe</li>
+        <li>Stop Sign Infraction — Severe</li>
+        <li>Speeding — Severe</li>
       </ul>
     </div>
   </div>
@@ -875,7 +866,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
       <span class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
       What You Need to Know
     </div>
-    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">You are on the road all day, and we understand that minor things can happen. When they do, <strong>communication is everything.</strong> How you handle a situation matters far more than the situation itself  honesty and quick reporting will always work in your favor.</p>
+    <p style="font-size:14.5px;color:#c8c8c8;line-height:1.65;">You are on the road all day, and we understand that minor things can happen. When they do, <strong>communication is everything.</strong> How you handle a situation matters far more than the situation itself — honesty and quick reporting will always work in your favor.</p>
   </div>
 
   <div class="split-card ok">
@@ -884,12 +875,12 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
         <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
       <div class="sc-text">
-        <div class="sc-label">Minor Incidents  Always Report It</div>
+        <div class="sc-label">Minor Incidents — Always Report It</div>
         <div class="sc-desc">Fender bender, scrape, or any contact with an object or vehicle.</div>
       </div>
     </div>
     <div class="split-card-body">
-      <p>If anything happens  no matter how small  <strong>call Dispatch immediately.</strong> Do not wait until you return to the station. As long as you are honest and upfront with us, we will work through it together. A quick phone call goes a long way. It is the cover-ups and delays that cause the real problems, not the incident itself.</p>
+      <p>If anything happens — no matter how small — <strong>call Dispatch immediately.</strong> Do not wait until you return to the station. As long as you are honest and upfront with us, we will work through it together. A quick phone call goes a long way. It is the cover-ups and delays that cause the real problems, not the incident itself.</p>
     </div>
   </div>
 
@@ -899,7 +890,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
         <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <div class="sc-text">
-        <div class="sc-label">Major Incidents  Formal Review</div>
+        <div class="sc-label">Major Incidents — Formal Review</div>
         <div class="sc-desc">Gross negligence, reckless driving, or totaling a vehicle.</div>
       </div>
     </div>
@@ -928,12 +919,12 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
       </div>
       <div class="sc-text">
-        <div class="sc-label">Helping Out  Doing a Rescue</div>
+        <div class="sc-label">Helping Out — Doing a Rescue</div>
         <div class="sc-desc">When you finish early and a teammate needs help.</div>
       </div>
     </div>
     <div class="split-card-body">
-      <p>If you finish your route early, Dispatch may ask you to pick up a few stops from a teammate who is running behind. <strong>Refusing a rescue is not acceptable.</strong> We are a team  today you're helping out, and tomorrow you might be the one who needs it. A positive attitude toward rescues reflects well on your performance and your character.</p>
+      <p>If you finish your route early, Dispatch may ask you to pick up a few stops from a teammate who is running behind. <strong>Refusing a rescue is not acceptable.</strong> We are a team — today you're helping out, and tomorrow you might be the one who needs it. A positive attitude toward rescues reflects well on your performance and your character.</p>
     </div>
   </div>
 
@@ -943,12 +934,12 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
         <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <div class="sc-text">
-        <div class="sc-label">Needing Help  Being Rescued</div>
+        <div class="sc-label">Needing Help — Being Rescued</div>
         <div class="sc-desc">When you're running behind and need stops taken.</div>
       </div>
     </div>
     <div class="split-card-body">
-      <p>We are always willing to help on a tough day  heavy routes and unexpected delays happen to everyone. However, <strong>consistently needing to be rescued shift after shift</strong> signals a performance issue. If this becomes a pattern, we will schedule a review to work with you on improving your pace and routing efficiency. The goal is to set you up for success, not to penalize you.</p>
+      <p>We are always willing to help on a tough day — heavy routes and unexpected delays happen to everyone. However, <strong>consistently needing to be rescued shift after shift</strong> signals a performance issue. If this becomes a pattern, we will schedule a review to work with you on improving your pace and routing efficiency. The goal is to set you up for success, not to penalize you.</p>
     </div>
   </div>
 </div>
@@ -959,7 +950,7 @@ hr.div { border:none; border-top:1px solid var(--border); margin:22px 0; }
 <footer class="footer">
   <div class="footer-logo">On The <span>Level</span> Logistics</div>
   <p>825 N Clovis Ave &nbsp;·&nbsp; Fresno, CA &nbsp;·&nbsp; Dispatch: 559.753.1850</p>
-  <p style="margin-top:8px;">Questions? Reach out to any leadership member  we're here to help you succeed.</p>
+  <p style="margin-top:8px;">Questions? Reach out to any leadership member — we're here to help you succeed.</p>
   <p style="margin-top:24px;font-size:10.5px;font-family:'DM Mono',monospace;letter-spacing:0.12em;color:#3e3f44;">UPDATED 08/2025 &nbsp;·&nbsp; ONTH INTERNAL USE ONLY</p>
 </footer>
 
