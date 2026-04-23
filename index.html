@@ -52,13 +52,13 @@ body {
   background: var(--dark);
 }
 .hero::before {
-  content: ''; position: absolute; inset: 0;
+  content:''; position:absolute; inset:0; pointer-events:none;
   background:
     radial-gradient(ellipse 80% 55% at 50% 0%, rgba(245,197,24,0.13) 0%, transparent 68%),
     repeating-linear-gradient(0deg,  transparent, transparent 39px, rgba(255,255,255,0.018) 40px),
     repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.018) 40px);
-  pointer-events: none;
 }
+  
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: 'DM Mono', monospace;
